@@ -42,7 +42,7 @@ public class Warrior extends Modable implements Career {
 						double sin=-1 * Math.sin(Math.floor(toFloat(call("", "getYaw"))) % 360 * Math.PI / 180);
 						double ssin=-1 * Math.sin(Math.floor(toFloat(call("", "getPitch"))) % 360 * Math.PI / 180);
 						double cos=Math.cos(Math.floor(toFloat(call("", "getYaw"))) % 360 * Math.PI / 180);
-						Object o=getPlayerEnt();
+						long o=getPlayerEnt();
 						Entity.setVelX(o, sin);
 						Entity.setVelY(o, ssin);
 						Entity.setVelZ(o, cos);
