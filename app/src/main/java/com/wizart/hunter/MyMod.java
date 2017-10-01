@@ -1,15 +1,13 @@
 package com.wizart.hunter;
 
-import com.jxs.cofmod.control.CoffeeMod;
-import com.jxs.cofmod.ModPE;
-import com.jxs.cofmod.utils.UI;
-import android.widget.PopupWindow;
-import android.graphics.drawable.Drawable;
-import android.graphics.BitmapFactory;
 import android.graphics.Bitmap;
-import com.jxs.cofmod.custome.AEntity;
+import android.graphics.BitmapFactory;
+import android.widget.PopupWindow;
+import com.jxs.cofmod.ModPE;
 import com.jxs.cofmod.Player;
-import com.jxs.cofmod.Entity;
+import com.jxs.cofmod.control.CoffeeMod;
+import com.jxs.cofmod.custome.AEntity;
+import com.jxs.cofmod.utils.UI;
 
 public class MyMod extends CoffeeMod implements Const {
 	public static final int SKILL_SIZE=150;
@@ -37,7 +35,7 @@ public class MyMod extends CoffeeMod implements Const {
 	@Override
 	public void screenChangeHook(String name) {
 		super.screenChangeHook(name);
-		
+
 		if (name.equals("hud_screen")) {
 			int s=new SPEditor(SP_FILE).getInt(SP_CHOOSE_CAREER, -1);
 			if (s == -1) {
@@ -82,17 +80,16 @@ public class MyMod extends CoffeeMod implements Const {
 	}
 
 	@Override
-	public void attackHook(Object attacker, Object victim) {
+	public void attackHook(long attacker, long victim) {
 		super.attackHook(attacker, victim);
 		if (attacker == getPlayerEnt()) {
 			target = new AEntity(victim);
 			AEntity vic=new AEntity(victim);
-			if (gjjc!=-1) vic.setHealth(vic.getHealth()-gjjc);
+			if (gjjc != -1) vic.setHealth(vic.getHealth() - gjjc);
 		}
 	}
 
 	public static AEntity getTarget() {
-		//注意pointedEntity是int
 		try {
 			if (target == null) return new AEntity(Player.getPointedEntity()); else return target;
 		} catch (Throwable t) {
@@ -100,10 +97,10 @@ public class MyMod extends CoffeeMod implements Const {
 		}
 		return null;
 	}
-	
+
 	public static boolean cost(int j) {
-		if (magic>=j) {
-			magic-=j;
+		if (magic >= j) {
+			magic -= j;
 			return true;
 		} else {
 			clientMessage("魔力值不足！");
